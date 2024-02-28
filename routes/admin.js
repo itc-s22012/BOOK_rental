@@ -33,7 +33,7 @@ router.post("/book/create",adminCheck, async (req, res, next) => {
                 break;
             default:
                 console.error(e);
-                res.status(500).json({
+                res.status(400).json({
                     message: "NG"
                 });
         }
@@ -56,19 +56,8 @@ router.put("/book/update",adminCheck, async (req, res, next) => {
             message: "update!",
             update_book
         });
-    } catch (e) {
-        switch (e.code) {
-            case "P2002":
-                res.status(400).json({
-                    message: "update error"
-                });
-                break;
-            default:
-                console.error(e);
-                res.status(500).json({
-                    message: "unknown error"
-                });
-        }
+    } catch (error) {
+      res.status(400).json({message: "NG"})
     }
 });
 router.get("/rental/current", adminCheck, async (req, res, next) =>{

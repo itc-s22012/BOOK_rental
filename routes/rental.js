@@ -65,7 +65,7 @@ router.put('/return', loginCheck, async (req, res, next) => {
 });
 router.get("/current", loginCheck, async (req, res, next) =>{
     const userId = req.userId;
-    const rental_books = await prisma.rental.findMany({
+    const rentalbooks = await prisma.rental.findMany({
         where:{returnDate: null, userId: userId},
         select: {
             id: true,
@@ -75,7 +75,7 @@ router.get("/current", loginCheck, async (req, res, next) =>{
         }
     })
     res.status(200).json({
-        rental_books
+        rentalbooks
     })
 });
 router.get('/history', loginCheck, async (req, res, next) =>{
